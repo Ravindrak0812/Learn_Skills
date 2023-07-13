@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load course_custom_tag %}
+{% load static %}
+<!--{% block title%}-->
+<!--    Signup-->
+<!--{% endblock%}-->
+
+{% block content%}
+     <div class="container">
+       <h1 class="display-1">Signup Page</h1>
+     </div>
+<div>
+    <form action="/signup" method="POST">
+        <form  method="POST">
+        {% csrf_token %}
+        {{form.as_ul}}
+        <input type="submit" value="Submit">
+        </form>
+    </form>
+</div>
+{% endblock%}

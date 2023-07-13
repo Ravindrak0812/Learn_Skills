@@ -1,0 +1,51 @@
+
+{% load static%}
+<link rel="stylesheet" href="{% static 'myapp/css/style.css'%}">
+{% block content %}
+         <nav  class="navbar navbar-expand-lg navbar-light bg-light ">
+             <a class="navbar-brand" href="/"><img src="{% static 'myapp/images/logo.jpg'%}"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+               <div class="collapse navbar-collapse" id="navbarNav">
+<!--                   Right-->
+                 <ul class="navbar-nav me-auto">
+                   <li class="nav-item active">
+                     <a class="nav-link active" style="margin-left:30px"  aria-current="page" href="/">Home</a></li>
+                   <li class="nav-item active">
+                     <a class="nav-link active" style="margin-left:30px"  href="{% url 'about' %}">About</a></li>
+                   <li class="nav-item active">
+                     <a class="nav-link active"style="margin-left:30px"  href="{% url 'Course_page' %}">Course</a></li>
+                   <li class="nav-item active">
+                     <a class="nav-link active"style="margin-left:30px"  href="{% url 'teachers' %}">Teacher</a></li>
+                   <li class="nav-item active">
+                     <a class="nav-link active" style="margin-left:30px" href="{% url 'contact' %}">Contact</a></li>
+                 </ul>
+
+                   <!--                     Left-->
+                 <ul class="navbar-nav p-3 ms-auto">
+                     {% if request.user.is_authenticated%}
+                      <li class="nav-item">
+                     <a class="nav-link" href="/logout">LogOut</a>
+                   </li>
+
+                     <span style="
+                     padding-left: 31px;
+                     margin-top: 8px;
+                     margin-right: -30px;">
+                         {{request.user}}
+                     </span>
+
+
+                     {% else %}
+                     <li class="nav-login">
+                     <a class="nav-link" href="/login">Login</a></li>
+                   <li class="nav-item">
+                     <a class="nav-link" href="/signup">SignUp</a>
+                   </li>
+                     {% endif%}
+                 </ul>
+               </div>
+         </nav>
+<!--Navbar End-->
+{% endblock content %}

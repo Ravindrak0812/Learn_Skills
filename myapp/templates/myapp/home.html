@@ -1,0 +1,51 @@
+{% extends 'myapp/base.html' %}
+{% load course_custom_tag %}
+{% load static%}
+<!-- {% block title%}-->
+<!--  {% endblock%}-->
+
+
+{% block content %}
+<style>
+.price{
+    font-size:20px;
+}
+.btn{
+    border-radius: 18px
+    }
+</style>
+
+<div>{% include 'myapp/header.html' %}</div><br><br>
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+    {% for course in courses %}
+        <div class="col mr-auto">
+            <div class="card mx-auto" style="width: 18rem;">
+                <img  class="card-img-top" src="{{course.thumbnail.url}}" alt="img">
+                <div class="card-body">
+                    <h5 class="card-title">{{course.name}}</h5>
+<!--                    <small> {{course.thumbnail.url}}</small>-->
+<!--                    <p class="card-text m-0 p-0">-->
+<!--                        Save {{course.discount}}%-->
+<!--                        <br>-->
+                     <span class="price">
+<!--                         <del><span>Free</span>{{course.price}}</del>-->
+
+                         <span>{% cal_sellprice course.price course.discount as value %} {{value | rupee}}</span>
+                     </span>
+                    </p>
+                </div>
+                <div class="card-footer p-0 ">
+                    <div class="row no btn-block-gutters">
+                        <div class="col border-right-1"><a href="/check-out/{{course.slug}}" class="btn btn-light btn-block">Enroll Now</a></div>
+                        <div class="col border-left-1"><a href="/course/{{course.slug}}" class="btn btn-light btn-block">Show More</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor%}
+    </div>
+</div>
+{% endblock %}

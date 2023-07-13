@@ -1,0 +1,39 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'myapp/css/style.css'%}">
+{% block content %}
+<style>
+    h2{
+        margin-top: 30px;
+        text-align: center;
+        color: #adb5bd;
+        font-family: revert;
+        font-size: 40px;
+        text-shadow: 2px 2px #ff0000;
+    }
+</style>
+
+<h2>CONTACT US</h2>
+<hr>
+<div class="container">
+    <form action="{% url 'contact' %}" method="post">
+        {% csrf_token %}
+        <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="First name" name="firstname">
+
+        <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Last name"  name="lastname">
+
+        <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your email"  name="email">
+
+        <label for="number">Number</label>
+              <input type="text" id="number" placeholder="your number" name="mobile">
+
+        <label for="subject">Subject</label>
+              <textarea  id="subject" cols="30" rows="10" name="message" class="box address" placeholder="Ask your Question:">
+              </textarea>
+                  <input type="submit" value="submit">
+    </form>
+</div>
+{% endblock content %}
